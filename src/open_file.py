@@ -32,7 +32,11 @@ path_out = os.path.join(cwd, "out")
 
 #displayFileStats(os.path.join(cwd, 'src', __file__))
 Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-filepath = os.path.normpath(askopenfilename()) # show an "Open" dialog box and return the path to the selected file
+# initialdir - https://stackoverflow.com/a/42040479/8175291
+filepath = askopenfilename(title = 'Choose file to move in input folder', filetypes = [('CSV Files', '*.csv')] ) # show an "Open" dialog box and return the path to the selected file
+if not filepath:
+	exit(1)
+filepath = os.path.normpath(filepath)
 #filename = basename(filepath)
 displayFileStats(filepath)
 
